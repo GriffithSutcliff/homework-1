@@ -1,23 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
 function App() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [users, setUsers] = useState([]);
+
+  function toggleVisibility() {
+    setIsVisible(!isVisible);
+  }
+
+  function handleEmailChange(e) {
+    e.preventDefault();
+    setEmail(e.target.value);
+  }
+
+  function handleNameChange(e) {
+    e.preventDefault();
+    setName(e.target.value);
+  }
+
+  function createUser(e) {
+    e.preventDefault();
+
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(email)) {
+      setEmailError("БУ! испугался? не бойся, ты просто неправильно ввёл почту");
+      return;
+    }
+
+    setEmailError("");
+    setUsers([...users, { name, email }]);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={toggleVisibility}>
+        {isVisible ? "Скрыть" : "Показать"} форму
+      </button>
+      <div className={`form ${isVisible ? "visible" : ""}`}>
+        <form onSubmit={createUser}>
+          <input
+            className="name"
+            value={name}
+            onChange={handleNameChange}
+            placeholder="Имя"
+          />
+          <input
+            className="email"
+            value={email}
+            onChange={handleEmailChange}
+            placeholder="Email"
+          />
+          <div style={{ color: "red" }}>{emailError}</div>
+          <button type="submit">Добавить пользователя</button>
+        </form>
+      </div>
     </div>
   );
 }
