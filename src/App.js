@@ -6,7 +6,7 @@ function App() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [users, setUsers] = useState([{name: 'sdsd', email:'kikdaad'}, {name: 'sdsd', email:'kikdaad'}]);
+  const [users, setUsers] = useState([]);
 
   function toggleVisibility() {
     setIsVisible(!isVisible);
