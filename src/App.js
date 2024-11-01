@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import UsersTable from "./components/UsersTable";
 
 function App() {
   const [isVisible, setIsVisible] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([{name: 'sdsd', email:'kikdaad'}, {name: 'sdsd', email:'kikdaad'}]);
 
   function toggleVisibility() {
     setIsVisible(!isVisible);
@@ -37,7 +38,7 @@ function App() {
   return (
     <div className="App">
       <button onClick={toggleVisibility}>
-        {isVisible ? "Скрыть" : "Показать"} форму
+        Регистрация пользователей
       </button>
       <div className={`form ${isVisible ? "visible" : ""}`}>
         <form onSubmit={createUser}>
@@ -57,6 +58,7 @@ function App() {
           <button type="submit">Добавить пользователя</button>
         </form>
       </div>
+      <UsersTable users={users}/>
     </div>
   );
 }

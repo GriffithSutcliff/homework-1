@@ -1,4 +1,7 @@
-
+body *{
+  margin: 0;
+  padding: 0;
+}
 .form {
   opacity: 0;
   max-height: 0;
@@ -9,4 +12,45 @@
 .form.visible {
   opacity: 1;           
   max-height: 200px;
+}
+.UsersTable{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 600px;
+}
+.users{
+  display: flex;
+  flex-direction: row;
+}
+.users *{
+  text-align: center;
+}
+.names h1{
+  border-style: solid;
+  border-width: 2px 2px 0 2px;
+}
+.emails h1{
+  border-style: solid;
+  border-width: 2px 2px 0 0;
+}
+.names p{
+  border-style: solid;
+  border-width: 2px 2px 0 2px;
+  width: 300px;
+  height: 30px;
+  font-size: 30px;
+}
+.emails p{
+  border-style: solid;
+  border-width: 2px 2px 0 0;
+  width: 300px;
+  height: 30px;
+  font-size: 30px;
+}
+.emails p:last-child{
+  border-width: 2px 2px 2px 0;
+}
+.names p:last-child{
+  border-width: 2px 2px 2px 2px;
 }
